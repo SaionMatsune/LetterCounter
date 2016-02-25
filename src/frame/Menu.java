@@ -26,7 +26,9 @@ public class Menu {
     public static JMenuItem menuitem22;
     public static JMenuItem menuitem23;
     public static JMenuItem menuitem24;
-    public static Separator separator;
+    public static JMenuItem menuitem27;
+    public static Separator separator1;
+    public static Separator separator2;
     
     public static JMenuBar setMenuBar(JMenuBar menubar){
         // Start Definition
@@ -43,8 +45,10 @@ public class Menu {
         menuitem22 = new JMenuItem("コピー(C)");
         menuitem23 = new JMenuItem("貼り付け(P)");
         menuitem24 = new JMenuItem("削除(L)");
+        menuitem27 = new JMenuItem("すべて選択(A)");
         
-        separator = new Separator();
+        separator1 = new Separator();
+        separator2 = new Separator();
         // End Definition
         
         // Start Definition of Function
@@ -56,7 +60,7 @@ public class Menu {
         menu1.add(menuitem12);
         menu1.add(menuitem13);
         menu1.add(menuitem14);
-        menu1.add(separator);
+        menu1.add(separator1);
         menu1.add(menuitem15);
         
         // Add menuitems in menu2
@@ -64,6 +68,8 @@ public class Menu {
         menu2.add(menuitem22);
         menu2.add(menuitem23);
         menu2.add(menuitem24);
+        menu2.add(separator2);
+        menu2.add(menuitem27);
         
         // menus in "menubar"
         menubar.add(menu1);
@@ -93,6 +99,8 @@ public class Menu {
         menuitem23.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_V, InputEvent.CTRL_DOWN_MASK));
         menuitem24.setMnemonic('L');
         menuitem24.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_DELETE, 0));
+        menuitem27.setMnemonic('A');
+        menuitem27.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, InputEvent.CTRL_DOWN_MASK));
     }
     
     public static void setAction() {
@@ -121,6 +129,11 @@ public class Menu {
         menuitem24.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 DeleteCommand.DeleteCommand(MainFrame.area);
+            }
+        });
+        menuitem27.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                SelectAllCommand.SelectAllCommand(MainFrame.area);
             }
         });
     }
