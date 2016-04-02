@@ -9,7 +9,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.FileInputStream;
+import java.io.InputStreamReader;
 
 import java.lang.String;
 
@@ -26,11 +27,11 @@ public class OpenCommand {
             ClearAction.ClearAction();
             try {
                 if(checkReadfile(file)) {
-                    BufferedReader reader = new BufferedReader(new FileReader(file));
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file), "UTF-8"));
                     String str;
                     
                     while((str = reader.readLine()) != null) {
-                        area.append(str);
+                        area.append(str+"\n");
                     }
                     reader.close();
                 } else {

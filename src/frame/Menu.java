@@ -114,6 +114,16 @@ public class Menu {
                 OpenCommand.OpenCommand(MainFrame.area);
             }
         });
+        menuitem13.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                SaveCommand.SaveCommand(MainFrame.area);
+            }
+        });
+        menuitem14.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                SaveasCommand.SaveasCommand(MainFrame.area);
+            }
+        });
         menuitem15.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 ExitCommand.ExitCommand();

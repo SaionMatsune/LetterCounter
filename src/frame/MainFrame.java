@@ -13,6 +13,9 @@ import javax.swing.JMenuBar;
 import java.awt.Container;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
+import java.awt.Rectangle;
+import java.awt.GraphicsEnvironment;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -68,7 +71,7 @@ public class MainFrame extends JFrame {
 		setLocationRelativeTo(null);
 		setResizable(false);
                 setTitle("文字数カウント");
-                setBounds(150, 100, 800, 500);
+                setBounds((int) (getDisplaySize()/15), (int) (getDisplaySize()/12), (int) (getDisplaySize()/1.7), (int) (getDisplaySize()/1.7/8*5));
                 setVisible(true);                
         }
 
@@ -86,11 +89,12 @@ public class MainFrame extends JFrame {
         // Create TextArea and Scroll
         private static void getTextArea() {
                 area = new JTextArea();
+                area.setFont(new Font("メイリオ", Font.PLAIN, (int) (getDisplaySize()/100)));
                 area.setLineWrap(true);
                 area.setWrapStyleWord(true);
                 
                 sp = new JScrollPane(area);
-                sp.setPreferredSize(new Dimension(780, 300));
+                sp.setPreferredSize(new Dimension((int) (getDisplaySize()/1.7-getDisplaySize()/70), (int) (getDisplaySize()/1.7/8*3)));
                 sp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
         }
 
@@ -106,11 +110,20 @@ public class MainFrame extends JFrame {
         private void getLabel() {
             label = new JLabel();
         }
-               
+
+        // Get DisplaySize
+        private static int getDisplaySize() {
+            GraphicsEnvironment env = GraphicsEnvironment.getLocalGraphicsEnvironment();
+            Rectangle desktopBounds = env.getMaximumWindowBounds();
+
+            return (int) desktopBounds.getWidth();
+        }
+        
         // Count
         private class CountButton implements ActionListener {
             @Override
             public void actionPerformed(ActionEvent e) {
+                label.setFont(new Font("メイリオ", Font.PLAIN, (int) (getDisplaySize()/100)));
 		label.setText("文字数は" + CountAction.CountAction(area.getText(), area.getLineCount() - 1) + "です");
             }
         }
