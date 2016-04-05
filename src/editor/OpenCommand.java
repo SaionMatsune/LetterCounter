@@ -1,4 +1,4 @@
-package editer;
+package editor;
 
 import javax.swing.JFileChooser;
 import javax.swing.JTextArea;
@@ -29,11 +29,14 @@ public class OpenCommand {
                 if(checkReadfile(file)) {
                     BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file), "UTF-8"));
                     String str;
-                    
+
                     while((str = reader.readLine()) != null) {
-                        area.append(str+"\n");
+                        area.append(str+System.lineSeparator());
                     }
                     reader.close();
+                    
+                    FileControl filecontrol = FileControl.getSingleton();
+                    FileControl.setFileName(file);
                 } else {
                     filealert("ファイルが見つからないか開けません");
                 }

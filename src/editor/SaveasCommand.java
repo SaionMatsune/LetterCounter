@@ -1,4 +1,4 @@
-package editer;
+package editor;
 
 import javax.swing.JFileChooser;
 import javax.swing.JTextArea;
@@ -6,16 +6,12 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.BufferedWriter;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
 import java.io.OutputStreamWriter;
 
 import java.lang.String;
-
-import static frame.MainFrame.area;
 
 public class SaveasCommand {
     
@@ -27,13 +23,16 @@ public class SaveasCommand {
             
             try {
                 if(checkWritefile(file)) {
-                    filealert("ファイルに書き込めません");
+                    filealert("ファイルが存在します");
                     
                 } else {
                     BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), "UTF-8"));
                     writer.write(area.getText());
                     writer.flush();
                     writer.close();
+                    
+                    FileControl filecontrol = FileControl.getSingleton();
+                    FileControl.setFileName(file);
                 }
             } catch(IOException e) {
                 filealert("エラーが発生しました");

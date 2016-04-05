@@ -1,4 +1,4 @@
-package editer;
+package editor;
 
 import javax.swing.JTextArea;
 

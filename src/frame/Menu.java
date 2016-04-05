@@ -1,5 +1,15 @@
 package frame;
 
+import editor.OpenCommand;
+import editor.CutCommand;
+import editor.NewCommand;
+import editor.SelectAllCommand;
+import editor.SaveasCommand;
+import editor.ExitCommand;
+import editor.CopyCommand;
+import editor.DeleteCommand;
+import editor.SaveCommand;
+import editor.PasteCommand;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
@@ -11,7 +21,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.InputEvent;
 
-import editer.*;
 
 public class Menu {
     
