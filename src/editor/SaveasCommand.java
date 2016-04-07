@@ -23,8 +23,7 @@ public class SaveasCommand {
             
             try {
                 if(checkWritefile(file)) {
-                    filealert("ファイルが存在します");
-                    
+                    AlertSave.alertExist();
                 } else {
                     BufferedWriter writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), "UTF-8"));
                     writer.write(area.getText());
@@ -33,6 +32,9 @@ public class SaveasCommand {
                     
                     FileControl filecontrol = FileControl.getSingleton();
                     FileControl.setFileName(file);
+                    
+                    AlertSave alertsave = AlertSave.getSingleton();
+                    AlertSave.setUpdate(area, false);
                 }
             } catch(IOException e) {
                 filealert("エラーが発生しました");

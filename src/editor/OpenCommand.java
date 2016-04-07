@@ -37,6 +37,9 @@ public class OpenCommand {
                     
                     FileControl filecontrol = FileControl.getSingleton();
                     FileControl.setFileName(file);
+                    
+                    AlertSave alertsave = AlertSave.getSingleton();
+                    AlertSave.setUpdate(area, false);
                 } else {
                     filealert("ファイルが見つからないか開けません");
                 }

@@ -27,6 +27,9 @@ public class SaveCommand {
                     writer.write(area.getText());
                     writer.flush();
                     writer.close();
+                    
+                    AlertSave alertsave = AlertSave.getSingleton();
+                    AlertSave.setUpdate(area, false);
                 } else {
                     filealert("ファイルに書き込めません");
                 }

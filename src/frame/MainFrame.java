@@ -18,14 +18,17 @@ import java.awt.GraphicsEnvironment;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyAdapter;
 
 import action.CountAction;
 import action.ClearAction;
+import editor.AlertSave;
 
 
 public class MainFrame extends JFrame {
     
-    private static MainFrame frame = new MainFrame();
+    public static MainFrame frame = new MainFrame();
     
     // Start Definition
     public static JTextArea area;
@@ -92,6 +95,7 @@ public class MainFrame extends JFrame {
                 area.setFont(new Font("メイリオ", Font.PLAIN, (int) (getDisplaySize()/100)));
                 area.setLineWrap(true);
                 area.setWrapStyleWord(true);
+                area.addKeyListener(new areaUpdate());
                 
                 sp = new JScrollPane(area);
                 sp.setPreferredSize(new Dimension((int) (getDisplaySize()/1.7-getDisplaySize()/70), (int) (getDisplaySize()/1.7/8*3)));
@@ -117,6 +121,14 @@ public class MainFrame extends JFrame {
             Rectangle desktopBounds = env.getMaximumWindowBounds();
 
             return (int) desktopBounds.getWidth();
+        }
+        
+        // Check area Update or not
+        private static class areaUpdate extends KeyAdapter {
+            public void keyReleased(KeyEvent e) {
+                AlertSave alertsave = AlertSave.getSingleton();
+                AlertSave.setUpdate(area, true);
+            }   
         }
         
         // Count
