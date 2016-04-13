@@ -121,7 +121,7 @@ public class Menu {
         });
         menuitem12.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                OpenCommand.OpenCommand(MainFrame.area);
+                OpenCommand.OpenCommand(MainFrame.frame, MainFrame.area);
             }
         });
         menuitem13.addActionListener(new ActionListener() {

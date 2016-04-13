@@ -19,28 +19,19 @@ public class NewCommand {
             int i = AlertSave.alertSave(frame, file);
             if(i == 0) {
                 SaveasCommand.SaveasCommand(area);
-                ClearAction.ClearAction();        
-                FileControl.setFileName(null);        
-                AlertSave.setUpdate(null, false, FileControl.getFileName());
+                New();
             } else if (i == 1) {
-                ClearAction.ClearAction();        
-                FileControl.setFileName(null);        
-                AlertSave.setUpdate(null, false, FileControl.getFileName());
+                New();
             }
         } else {        
-            ClearAction.ClearAction();        
-            FileControl.setFileName(null);        
-            AlertSave.setUpdate(null, false, FileControl.getFileName());        
+            New();
         }
         
     }
     
+    private static void New () {
+        ClearAction.ClearAction();        
+        FileControl.setFileName(null);        
+        AlertSave.setUpdate(null, false, FileControl.getFileName());
+    }
 }
-/*
-Yes
-select:0->save,clear
-select:1->clear
-select:-1&2->nothing
-No
-clear
-*/

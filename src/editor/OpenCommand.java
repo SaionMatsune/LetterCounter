@@ -15,10 +15,30 @@ import java.io.InputStreamReader;
 import java.lang.String;
 
 import action.ClearAction;
+import frame.MainFrame;
 
 public class OpenCommand {
     
-    public static void OpenCommand(JTextArea area) {
+    public static void OpenCommand(MainFrame frame, JTextArea area) {
+        AlertSave alertsave = AlertSave.getSingleton();
+        FileControl filecontrol = FileControl.getSingleton();
+        File file = FileControl.getFileName();
+
+        if( AlertSave.getUpdate() ) {
+            int i = AlertSave.alertSave(frame, file);
+            if(i == 0) {
+            	SaveCommand.SaveCommand(area);
+		Open(area);
+            } else if(i == 1) {
+		Open(area);
+            }
+        } else {
+            Open(area);
+        }
+        
+    }
+    
+    private static void Open(JTextArea area) {
         JFileChooser filechooser = new JFileChooser();
         
         if(filechooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
@@ -39,13 +59,8 @@ public class OpenCommand {
                         area.append(str);
                         lise = str;
                         str = reader.readLine();
-                        //System.out.print(i + ":" + str);
-                        //System.out.println("  " + lise);
                         i++;
                     }
-                    //lise = str;
-                    //System.out.print(i + ":" + str);
-                    //System.out.println("  " + lise);
                     if(lise == System.lineSeparator()) {
                         area.append(System.lineSeparator());
                     }
@@ -67,7 +82,6 @@ public class OpenCommand {
             }
             
         }
-        
     }
 
     private static boolean checkReadfile(File file) {
