@@ -8,10 +8,7 @@ import javax.swing.JOptionPane;
 import java.io.File;
 import java.io.IOException;
 import java.io.BufferedWriter;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
 import java.lang.String;

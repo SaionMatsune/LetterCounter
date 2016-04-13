@@ -28,6 +28,7 @@ import java.io.File;
 import action.CountAction;
 import action.ClearAction;
 import editor.AlertSave;
+import editor.DateCommand;
 import editor.FileControl;
 import editor.SaveasCommand;
 
@@ -134,8 +135,12 @@ public class MainFrame extends JFrame {
         // Check area Update or not
         private static class areaUpdate extends KeyAdapter {
             public void keyReleased(KeyEvent e) {
-                AlertSave alertsave = AlertSave.getSingleton();
-                AlertSave.setUpdate(area, true, null);
+                if(e.getKeyCode() == KeyEvent.VK_F5) {
+                    DateCommand.DateCommand(area);
+                } else {
+                    AlertSave alertsave = AlertSave.getSingleton();
+                    AlertSave.setUpdate(area, true, null);
+                }
             }   
         }
         

@@ -11,16 +11,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.InputEvent;
 
-import editor.OpenCommand;
-import editor.CutCommand;
-import editor.NewCommand;
-import editor.SelectAllCommand;
-import editor.SaveasCommand;
-import editor.ExitCommand;
-import editor.CopyCommand;
-import editor.DeleteCommand;
-import editor.SaveCommand;
-import editor.PasteCommand;
+import editor.*;
 
 
 public class Menu {
@@ -37,6 +28,7 @@ public class Menu {
     public static JMenuItem menuitem23;
     public static JMenuItem menuitem24;
     public static JMenuItem menuitem27;
+    public static JMenuItem menuitem28;
     public static Separator separator1;
     public static Separator separator2;
     
@@ -56,6 +48,7 @@ public class Menu {
         menuitem23 = new JMenuItem("貼り付け(P)");
         menuitem24 = new JMenuItem("削除(L)");
         menuitem27 = new JMenuItem("すべて選択(A)");
+        menuitem28 = new JMenuItem("日付と時刻(D)");
         
         separator1 = new Separator();
         separator2 = new Separator();
@@ -80,6 +73,7 @@ public class Menu {
         menu2.add(menuitem24);
         menu2.add(separator2);
         menu2.add(menuitem27);
+        menu2.add(menuitem28);
         
         // menus in "menubar"
         menubar.add(menu1);
@@ -111,6 +105,8 @@ public class Menu {
         menuitem24.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_DELETE, 0));
         menuitem27.setMnemonic('A');
         menuitem27.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, InputEvent.CTRL_DOWN_MASK));
+        menuitem28.setMnemonic('D');
+        menuitem28.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F5, 0));
     }
     
     public static void setAction() {
@@ -163,6 +159,11 @@ public class Menu {
         menuitem27.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 SelectAllCommand.SelectAllCommand(MainFrame.area);
+            }
+        });
+        menuitem28.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                DateCommand.DateCommand(MainFrame.area);
             }
         });
     }
