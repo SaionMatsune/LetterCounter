@@ -1,22 +1,27 @@
 package editor;
 
 import java.io.File;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 import javax.swing.JTextArea;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 import frame.MainFrame;
 
 
-
 public class AlertSave {
     private static AlertSave instance = new AlertSave();
-    private static JTextArea areabe, areaaf;
+    private static String areabe, areaaf;
     private static boolean boo;
         
     private AlertSave() {
-        areabe = null;
-        areaaf = null;
+        areabe = "";
+        areaaf = "";
         boo = false;
     }
     
@@ -24,29 +29,76 @@ public class AlertSave {
         return instance;
     }
     
-    public static void setUpdate(JTextArea area, boolean b) {
+    public static void setUpdate(JTextArea area, boolean b, File file) {
         System.out.println(b);
-        if(b) {
-            areabe = area;
-            boo = true;
-        } else {
-            areaaf = area;
-            boo = false;
-        }
+        debugprint(1);
+        //System.out.println("file:" + file);
         /*
-        if(areabe != areaaf) {
+        if(!b) {
+            areaaf = area;
+        } 
+            areabe = area;
+        */
+        if(!b) {
+            //areaaf = file.getText();
+            areaaf = "";
+            try {
+                if(file != null) {
+                    //areaaf.setText("");
+                    BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file), "UTF-8"));
+                    String str, lise = null;
+                    int i = 0;
+
+                    str = reader.readLine();
+                    while(str != null) {
+                        //areaaf.append(str+System.lineSeparator());
+                        if(i != 0) {
+                            areaaf += System.lineSeparator();
+                        }
+                        areaaf += str;
+                        lise = str;
+                        str = reader.readLine();
+                        //System.out.print("save" + i + ":" + str);
+                        //System.out.println("  " + lise);
+                        i++;
+                    }
+                    //System.out.print("save" + i + ":" + str);
+                    //System.out.println("  " + lise);
+                    
+                    if(lise == System.lineSeparator()) {
+                        areaaf += System.lineSeparator();
+                    }
+                    
+                    reader.close();
+                } 
+            } catch(FileNotFoundException err) {
+                filealert("エラーが発生しました");
+            } catch(IOException err) {
+                filealert("エラーが発生しました");
+            }
+        } 
+        //areabe = area;
+        areabe = area.getText();
+
+        debugprint(2);
+        /*
+        if(!areabe.getText().equals( areaaf.getText() )) {  // areabe.getTxet() != areaaf.getTexe()
             boo = true;
         } else {
             boo = false;
         }
         */
-        if(areabe != null) {
-            System.out.println(areabe.getText());            
+        if(!areabe.equals( areaaf )) {  // areabe.getTxet() != areaaf.getTexe()
+            boo = true;
+            if(!b) {
+                boo = false;
+                areaaf = areabe;
+            }
+            
+        } else {
+            boo = false;
         }
-
-        if(areaaf != null) {
-            System.out.println(areaaf.getText());
-        }
+        
         System.out.println(boo);
     }
     
@@ -55,15 +107,8 @@ public class AlertSave {
         return boo;
     }
     
-    public static void alertSave(MainFrame frame, File file) {
-        /*
-        JButton bsave = new JButton("保存する(S)");
-        JButton bnosave = new JButton("保存しない(N)");
-        JButton bcancel = new JButton("キャンセル");
-        
-        JPanel pas = new JPanel();
-        */
-        String selectvalueas[] = {"保存する(S)", "保存しない(N)", "キャンセル"};
+    public static int alertSave(MainFrame frame, File file) {
+        String selectvalueas[] = {"保存する", "保存しない", "キャンセル"};
         String message = null;
         
         if(file == null) {
@@ -74,24 +119,38 @@ public class AlertSave {
         message = message + "への変更内容を保存しますか?";
         
         int select = JOptionPane.showOptionDialog(frame,
-          message, 
-          "確認", 
-          JOptionPane.YES_NO_CANCEL_OPTION,
-          JOptionPane.QUESTION_MESSAGE,
-          null, 
-          selectvalueas, 
-          selectvalueas[0]
-    );
+                                                  message, 
+                                                  "確認", 
+                                                  JOptionPane.YES_NO_CANCEL_OPTION,
+                                                  JOptionPane.PLAIN_MESSAGE,
+                                                  null, 
+                                                  selectvalueas, 
+                                                  selectvalueas[0]
+                                                  );
+        System.out.println("select:" + select);
         
-        
+        return select;
     }
     
     public static void alertExist() {
-        String selectvalueas[] = {"はい(S)", "いいえ(N)"};
+        String selectvalueas[] = {"はい", "いいえ"};
         
     }
+ 
+    private static void filealert(String str) {
+        JLabel label = new JLabel(str);
+        JOptionPane.showMessageDialog(null, label, "警告", JOptionPane.ERROR_MESSAGE);
+    }
     
-    
+    private static void debugprint(int i) {
+        System.out.println(i);
+        System.out.println("before");
+        //System.out.println(areabe.getText());
+        System.out.println(areabe);
+        System.out.println("after");
+        //System.out.println(areaaf.getText());
+        System.out.println(areaaf);
+    }
     
 }
 

@@ -8,7 +8,7 @@ public class CutCommand {
         area.cut();
         
         AlertSave alertsave = AlertSave.getSingleton();
-        AlertSave.setUpdate(area, true);
+        AlertSave.setUpdate(area, true, null);
     }
     
 }

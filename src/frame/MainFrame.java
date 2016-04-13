@@ -20,10 +20,17 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowAdapter;
+
+import java.io.File;
 
 import action.CountAction;
 import action.ClearAction;
 import editor.AlertSave;
+import editor.FileControl;
+import editor.SaveasCommand;
+
 
 
 public class MainFrame extends JFrame {
@@ -70,12 +77,13 @@ public class MainFrame extends JFrame {
                 contentPane.add(label, BorderLayout.SOUTH);
 
 
-                setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 		setLocationRelativeTo(null);
 		setResizable(false);
                 setTitle("文字数カウント");
                 setBounds((int) (getDisplaySize()/15), (int) (getDisplaySize()/12), (int) (getDisplaySize()/1.7), (int) (getDisplaySize()/1.7/8*5));
-                setVisible(true);                
+                setVisible(true);
+                this.addWindowListener(new closeWindow());
         }
 
         public static MainFrame getInstance() {
@@ -127,8 +135,29 @@ public class MainFrame extends JFrame {
         private static class areaUpdate extends KeyAdapter {
             public void keyReleased(KeyEvent e) {
                 AlertSave alertsave = AlertSave.getSingleton();
-                AlertSave.setUpdate(area, true);
+                AlertSave.setUpdate(area, true, null);
             }   
+        }
+        
+        // In Clicking [X], Check Save or not 
+        private static class closeWindow extends WindowAdapter {
+            public void windowClosing(WindowEvent e) {
+                AlertSave alertsave = AlertSave.getSingleton();
+                FileControl filecontrol = FileControl.getSingleton();
+                File file = FileControl.getFileName();
+                
+                if( AlertSave.getUpdate() ) {
+                    int i = AlertSave.alertSave(frame, file);
+                    if(i == 0) {
+                        SaveasCommand.SaveasCommand(area);
+                        System.exit(0);
+                    } else if (i == 1) {
+                        System.exit(0);
+                    }
+                } else {        
+                    System.exit(0);
+                }
+            }
         }
         
         // Count

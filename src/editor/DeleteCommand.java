@@ -8,6 +8,6 @@ public class DeleteCommand {
         area.replaceRange("", area.getSelectionStart(), area.getSelectionEnd());
         
         AlertSave alertsave = AlertSave.getSingleton();
-        AlertSave.setUpdate(area, true);
+        AlertSave.setUpdate(area, true, null);
     }
 }

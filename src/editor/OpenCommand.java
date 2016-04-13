@@ -28,10 +28,26 @@ public class OpenCommand {
             try {
                 if(checkReadfile(file)) {
                     BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(file), "UTF-8"));
-                    String str;
+                    String str, lise = null;
+                    int i = 0;
 
-                    while((str = reader.readLine()) != null) {
-                        area.append(str+System.lineSeparator());
+                    str = reader.readLine();
+                    while(str != null) {
+                        if(i != 0) {
+                            area.append(System.lineSeparator());
+                        }
+                        area.append(str);
+                        lise = str;
+                        str = reader.readLine();
+                        //System.out.print(i + ":" + str);
+                        //System.out.println("  " + lise);
+                        i++;
+                    }
+                    //lise = str;
+                    //System.out.print(i + ":" + str);
+                    //System.out.println("  " + lise);
+                    if(lise == System.lineSeparator()) {
+                        area.append(System.lineSeparator());
                     }
                     reader.close();
                     
@@ -39,7 +55,7 @@ public class OpenCommand {
                     FileControl.setFileName(file);
                     
                     AlertSave alertsave = AlertSave.getSingleton();
-                    AlertSave.setUpdate(area, false);
+                    AlertSave.setUpdate(area, false, file);
                 } else {
                     filealert("ファイルが見つからないか開けません");
                 }

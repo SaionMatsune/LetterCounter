@@ -1,5 +1,6 @@
 package editor;
 
+import java.io.BufferedReader;
 import javax.swing.JTextArea;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -7,7 +8,10 @@ import javax.swing.JOptionPane;
 import java.io.File;
 import java.io.IOException;
 import java.io.BufferedWriter;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
 import java.lang.String;
@@ -29,7 +33,7 @@ public class SaveCommand {
                     writer.close();
                     
                     AlertSave alertsave = AlertSave.getSingleton();
-                    AlertSave.setUpdate(area, false);
+                    AlertSave.setUpdate(area, false, file);
                 } else {
                     filealert("ファイルに書き込めません");
                 }
@@ -53,4 +57,5 @@ public class SaveCommand {
         JLabel label = new JLabel(str);
         JOptionPane.showMessageDialog(null, label, "警告", JOptionPane.ERROR_MESSAGE);
     }
+    
 }

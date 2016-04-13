@@ -34,7 +34,7 @@ public class SaveasCommand {
                     FileControl.setFileName(file);
                     
                     AlertSave alertsave = AlertSave.getSingleton();
-                    AlertSave.setUpdate(area, false);
+                    AlertSave.setUpdate(area, false, file);
                 }
             } catch(IOException e) {
                 filealert("エラーが発生しました");

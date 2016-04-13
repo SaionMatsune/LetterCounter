@@ -8,7 +8,7 @@ public class PasteCommand {
         area.paste();
         
         AlertSave alertsave = AlertSave.getSingleton();
-        AlertSave.setUpdate(area, true);
+        AlertSave.setUpdate(area, true, null);
     }
     
 }
