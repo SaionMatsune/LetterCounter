@@ -1,15 +1,15 @@
 package frame;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.InputEvent;
+
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu.Separator;
 import javax.swing.KeyStroke;
-
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyEvent;
-import java.awt.event.InputEvent;
 
 import editor.*;
 
@@ -122,12 +122,12 @@ public class Menu {
         });
         menuitem13.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                SaveCommand.SaveCommand(MainFrame.area);
+                SaveCommand.SaveCommand(MainFrame.frame, MainFrame.area);
             }
         });
         menuitem14.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                SaveasCommand.SaveasCommand(MainFrame.area);
+                SaveasCommand.SaveasCommand(MainFrame.frame, MainFrame.area);
             }
         });
         menuitem15.addActionListener(new ActionListener() {
@@ -167,5 +167,6 @@ public class Menu {
             }
         });
     }
+
 }
 

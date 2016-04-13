@@ -1,10 +1,5 @@
 package editor;
 
-import javax.swing.JFileChooser;
-import javax.swing.JTextArea;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -13,6 +8,11 @@ import java.io.FileInputStream;
 import java.io.InputStreamReader;
 
 import java.lang.String;
+
+import javax.swing.JFileChooser;
+import javax.swing.JTextArea;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 import action.ClearAction;
 import frame.MainFrame;
@@ -27,7 +27,7 @@ public class OpenCommand {
         if( AlertSave.getUpdate() ) {
             int i = AlertSave.alertSave(frame, file);
             if(i == 0) {
-            	SaveCommand.SaveCommand(area);
+            	SaveCommand.SaveCommand(frame, area);
 		Open(area);
             } else if(i == 1) {
 		Open(area);
@@ -98,4 +98,5 @@ public class OpenCommand {
         JLabel label = new JLabel(str);
         JOptionPane.showMessageDialog(null, label, "警告", JOptionPane.ERROR_MESSAGE);
     }
+
 }

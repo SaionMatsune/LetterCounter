@@ -1,10 +1,6 @@
 package editor;
 
 import java.io.BufferedReader;
-import javax.swing.JTextArea;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-
 import java.io.File;
 import java.io.IOException;
 import java.io.BufferedWriter;
@@ -13,14 +9,20 @@ import java.io.OutputStreamWriter;
 
 import java.lang.String;
 
+import javax.swing.JTextArea;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
+import frame.MainFrame;
+
 public class SaveCommand {
     
-    public static void SaveCommand(JTextArea area) {
+    public static void SaveCommand(MainFrame frame, JTextArea area) {
         FileControl filecontrol = FileControl.getSingleton();
         File file = FileControl.getFileName();
         
         if(file == null) {
-            SaveasCommand.SaveasCommand(area);
+            SaveasCommand.SaveasCommand(frame, area);
         } else {
             try {
                 if(checkWritefile(file)) {

@@ -4,6 +4,8 @@ import java.io.File;
 
 
 public class FileControl {
+    
+    // Create FileControl by Singleton
     private static FileControl instance = new FileControl();
     private static File fileM;
     

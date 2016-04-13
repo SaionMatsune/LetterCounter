@@ -1,8 +1,8 @@
 package editor;
 
-import javax.swing.JTextArea;
-
 import java.io.File;
+
+import javax.swing.JTextArea;
 
 import action.ClearAction;
 import frame.MainFrame;
@@ -18,7 +18,7 @@ public class NewCommand {
         if( AlertSave.getUpdate() ) {
             int i = AlertSave.alertSave(frame, file);
             if(i == 0) {
-                SaveasCommand.SaveasCommand(area);
+                SaveasCommand.SaveasCommand(frame, area);
                 New();
             } else if (i == 1) {
                 New();
@@ -34,4 +34,5 @@ public class NewCommand {
         FileControl.setFileName(null);        
         AlertSave.setUpdate(null, false, FileControl.getFileName());
     }
+
 }

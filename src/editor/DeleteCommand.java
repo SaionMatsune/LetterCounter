@@ -10,4 +10,5 @@ public class DeleteCommand {
         AlertSave alertsave = AlertSave.getSingleton();
         AlertSave.setUpdate(area, true, null);
     }
+
 }
