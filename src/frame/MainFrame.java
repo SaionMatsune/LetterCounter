@@ -78,7 +78,7 @@ public class MainFrame extends JFrame {
         contentPane.add(label, BorderLayout.SOUTH);
 
         // Setting Frame
-        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         setLocationRelativeTo(null);
 	setResizable(false);
         setTitle("文字数カウント");
