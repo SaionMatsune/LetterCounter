@@ -1,12 +1,13 @@
 package editor;
 
-import action.ClearAction;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.awt.GraphicsEnvironment;
+import java.awt.GridBagConstraints;
 import java.awt.Rectangle;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.Container;
-import java.awt.BorderLayout;
+import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
@@ -20,14 +21,8 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
-import frame.MainFrame;
-
-
-
-
 
 public class SearchCommand extends JFrame {
-    //public static SearchCommand sframe = new SearchCommand();
     public static SearchCommand sframe;
 
     private static JTextField tfield = new JTextField(15);
@@ -45,23 +40,47 @@ public class SearchCommand extends JFrame {
                 	| IllegalAccessException | UnsupportedLookAndFeelException e) {
             e.printStackTrace();
 	}
-        
+
+        GridBagLayout layout = new GridBagLayout();
         JPanel p = new JPanel();
-        JPanel bp = new JPanel();
+        p.setLayout(layout);
+        
+        GridBagConstraints gbc = new GridBagConstraints();
         
         JLabel label = new JLabel("検索する文字列:");
         
         getButton();
         
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        gbc.gridwidth = 2;
+        gbc.gridheight = 1;
+        layout.setConstraints(label, gbc);
         
+        gbc.gridx = 3;
+        gbc.gridy = 0;
+        gbc.gridwidth = 2;
+        gbc.gridheight = 1;
+        layout.setConstraints(tfield, gbc);
+        
+        gbc.gridx = 5;
+        gbc.gridy = 1;
+        gbc.gridwidth = 2;
+        gbc.gridheight = 1;
+        layout.setConstraints(b1, gbc);
+        
+        gbc.gridx = 5;
+        gbc.gridy = 2;
+        gbc.gridwidth = 2;
+        gbc.gridheight = 1;
+        layout.setConstraints(b2, gbc);
+             
         p.add(label);
         p.add(tfield);
-        bp.add(b1);
-        bp.add(b2);
-        
-        Container contentPane = getContentPane();
-        contentPane.add(p, BorderLayout.NORTH);
-        contentPane.add(bp, BorderLayout.EAST);
+        p.add(b1);
+        p.add(b2);
+     
+        getContentPane().add(p, BorderLayout.NORTH);
         
         
         // Setting Frame
@@ -71,9 +90,8 @@ public class SearchCommand extends JFrame {
         setTitle("検索");
         setBounds((int) (getDisplaySize()/5), (int) (getDisplaySize()/10), (int) (getDisplaySize()/1.7/2.3), (int) (getDisplaySize()/1.7/8*5/3.5));
         setVisible(true);
-        
+
         this.addWindowListener(new WindowAdapter(){
-            // In Clicking [X], Check Save or not 
             public void windowClosing(WindowEvent e) {
                 sframe.dispose();
             }
@@ -92,7 +110,6 @@ public class SearchCommand extends JFrame {
         b1.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
                 if(tfield != null) {
-                    //searcharea
                     int a = 0;
                     if(searcharea.getSelectedText() != null) {
                         a += searcharea.getSelectionEnd();
@@ -113,6 +130,8 @@ public class SearchCommand extends JFrame {
                 sframe.dispose();
             }
         });
+        
+        b1.setPreferredSize(b2.getPreferredSize());
     }
     
     // Get DisplaySize
@@ -123,7 +142,3 @@ public class SearchCommand extends JFrame {
         return (int) desktopBounds.getWidth();
     }
 }
-/***検索******************************************
-検索する文字列:[   (JTextField)   ]    [次を検索(F)]
-                                      [キャンセル]
-*************************************************/

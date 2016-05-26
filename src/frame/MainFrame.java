@@ -30,7 +30,7 @@ import action.ClearAction;
 import editor.AlertSave;
 import editor.DateCommand;
 import editor.FileControl;
-import editor.SaveasCommand;
+import editor.SaveCommand;
 
 
 
@@ -94,7 +94,7 @@ public class MainFrame extends JFrame {
                 if( AlertSave.getUpdate() ) {
                     int i = AlertSave.alertSave(frame, file);
                     if(i == 0) {
-                        SaveasCommand.SaveasCommand(frame, area);
+                        SaveCommand.SaveCommand(frame, area);
                         System.exit(0);
                     } else if (i == 1) {
                         System.exit(0);
@@ -151,6 +151,7 @@ public class MainFrame extends JFrame {
             }
         });
         b2 = new JButton("クリア");
+        b2.setPreferredSize(b1.getPreferredSize());
         b2.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
                 ClearAction.ClearAction();
