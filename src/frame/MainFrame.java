@@ -30,7 +30,9 @@ import action.ClearAction;
 import editor.AlertSave;
 import editor.DateCommand;
 import editor.FileControl;
+import editor.ReplaceCommand;
 import editor.SaveCommand;
+import javax.swing.KeyStroke;
 
 
 
@@ -119,15 +121,18 @@ public class MainFrame extends JFrame {
     // Create TextArea and Scroll
     private static void getTextArea() {
         // Setting TextArea
-        area = new JTextArea();
+        area = new JTextArea();        
         area.setFont(new Font("メイリオ", Font.PLAIN, (int) (getDisplaySize()/100)));
         area.setLineWrap(true);
         area.setWrapStyleWord(true);
+        area.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_H, KeyEvent.CTRL_DOWN_MASK), "none");
         area.addKeyListener(new KeyAdapter(){
             // Check area Update or not
             public void keyTyped(KeyEvent e) {
                 if(e.getKeyCode() == KeyEvent.VK_F5) {
                     DateCommand.DateCommand(area);
+                } else if((e.getKeyCode() == KeyEvent.VK_H) && ((e.getModifiers() & KeyEvent.CTRL_DOWN_MASK) != 0)) {
+                    ReplaceCommand.ReplaceFrame(area);
                 } else {
                     AlertSave alertsave = AlertSave.getSingleton();
                     AlertSave.setUpdate(area, true, null);

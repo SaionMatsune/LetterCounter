@@ -21,6 +21,8 @@ import javax.swing.JTextField;
 import javax.swing.JButton;
 
 import frame.MainFrame;
+import java.awt.event.KeyEvent;
+import javax.swing.KeyStroke;
 
 public class ReplaceCommand extends JFrame {
     public static ReplaceCommand rframe;
@@ -52,6 +54,9 @@ public class ReplaceCommand extends JFrame {
         
         JLabel label1 = new JLabel("検索する文字列:");
         JLabel label2 = new JLabel("置換後の文字列:");
+        
+        tfield1.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_H, KeyEvent.CTRL_MASK), "none");
+        tfield2.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_H, KeyEvent.CTRL_MASK), "none");
         
         getButton();        
 

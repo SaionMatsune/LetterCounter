@@ -115,7 +115,7 @@ public class Menu {
         menuitem25.setMnemonic('F');
         menuitem25.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F, InputEvent.CTRL_DOWN_MASK));
         menuitem26.setMnemonic('R');
-        menuitem26.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_J, InputEvent.CTRL_DOWN_MASK));
+        menuitem26.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_H, InputEvent.CTRL_DOWN_MASK));
         menuitem27.setMnemonic('A');
         menuitem27.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_A, InputEvent.CTRL_DOWN_MASK));
         menuitem28.setMnemonic('D');
@@ -176,6 +176,8 @@ public class Menu {
         });
         menuitem26.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
+                //ReplaceCommand rc = new ReplaceCommand();
+                //MainFrame.area.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_H, KeyEvent.CTRL_DOWN_MASK), rc.ReplaceFrame( MainFrame.frame.area ));
                 ReplaceCommand.ReplaceFrame(MainFrame.area);
             }
         });

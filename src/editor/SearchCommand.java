@@ -10,6 +10,7 @@ import java.awt.event.WindowEvent;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 
 
 import javax.swing.JFrame;
@@ -20,6 +21,7 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JButton;
+import javax.swing.KeyStroke;
 
 
 public class SearchCommand extends JFrame {
@@ -48,6 +50,8 @@ public class SearchCommand extends JFrame {
         GridBagConstraints gbc = new GridBagConstraints();
         
         JLabel label = new JLabel("検索する文字列:");
+        
+        tfield.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_H, KeyEvent.CTRL_MASK), "none");
         
         getButton();
         
