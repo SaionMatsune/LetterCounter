@@ -62,9 +62,12 @@ public class AlertSave {
             } catch(IOException err) {
                 filealert("エラーが発生しました");
             }
-        } 
-        areabe = area.getText();
-
+        }
+        if(area == null) {
+            areabe = "";
+        } else {
+            areabe = area.getText();
+        }
         if(!areabe.equals( areaaf )) {
             boo = true;
             if(!b) {
